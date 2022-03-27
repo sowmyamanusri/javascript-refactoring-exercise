@@ -2,10 +2,11 @@ function processTransactions(transActions) {
     if (!transActions) {
         throw new Error(" undefined array of transactions");
     }
+    const transactions = transActions.sort();
     const txCount = {}
-    transActions.forEach(item => txCount[item] ? txCount[item] += 1 : txCount[item] = 1);
+    transactions.forEach(item => txCount[item] ? txCount[item] += 1 : txCount[item] = 1);
     return Object.keys(txCount).sort((itemOne, itemTwo) =>
-            txCount[itemTwo] - txCount[itemOne] || itemOne > itemTwo || -(itemOne < itemTwo))
+            txCount[itemTwo] - txCount[itemOne])
         .map(item => `${item} ${txCount[item]}`)
 }
 
